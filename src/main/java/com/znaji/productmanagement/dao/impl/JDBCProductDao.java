@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
 import java.sql.*;
 
 @Component
@@ -22,15 +23,10 @@ public class JDBCProductDao implements ProductDao {
     private String username;
     private String password;
     @Autowired
-
-    private Connection connection;
+    private DataSource dataSource;
 
     private Connection createConnection() throws ClassNotFoundException, SQLException {
-        if (connection != null && !connection.isClosed()) {
-            return connection;
-        }
-        Class.forName(driverClassName);
-        return DriverManager.getConnection(url, username, password);
+        return dataSource.getConnection();
     }
     @Override
     public int count() {
