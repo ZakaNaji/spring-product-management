@@ -12,10 +12,11 @@ import org.springframework.stereotype.Component;
 import javax.sql.DataSource;
 import java.sql.*;
 
-@Component
+
 @NoArgsConstructor
 @Getter
 @Setter
+@Component("jdbcProductDao")
 public class JDBCProductDao implements ProductDao {
 
     private String driverClassName;

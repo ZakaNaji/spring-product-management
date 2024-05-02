@@ -9,6 +9,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -19,7 +20,7 @@ import java.sql.SQLException;
 @RequiredArgsConstructor
 @EnableConfigurationProperties(JdbcProperties.class)
 @PropertySource("classpath:jdbc.properties")
-public class ProductConfig {
+public class GeneralConfig {
 
     private final JdbcProperties jdbcProperties;
 
@@ -41,4 +42,10 @@ public class ProductConfig {
         return dataSource;
 
     }
+
+     @Bean
+    public JdbcTemplate jdbcTemplate(DataSource dataSource) {
+        return new JdbcTemplate(dataSource);
+    }
+
 }

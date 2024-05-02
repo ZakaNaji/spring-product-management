@@ -6,7 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
-@Component
+
 public class ProductCMD implements CommandLineRunner {
 
     final private ApplicationContext applicationContext;
